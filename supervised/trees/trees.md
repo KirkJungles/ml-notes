@@ -26,9 +26,6 @@ Might look something like this for regression in each node:
 
 
 ```
-Node leftNode = new Node()
-Node rightNode = new Node()
-class FunctionTuple() = (column col, category cat)
 Dictionary<FunctionTuple, float> errorDict = new Dictionary<(column, category), float>()
 
 
@@ -38,12 +35,14 @@ foreach column feature in dataFrame.Columns:
 		foreach string category in uniqueCategories:
 			foreach DataRow sample in dataFrame:	
 				if (sample.Column == category):
-					leftNode.AddSample(sample)
+					leftSamples.AddSample(sample)
 				else:
-					rightNode.AddSample(sample)
-		FunctionTuple funcTuple = new FunctionTuple(feature, category)
-		float totalError = leftNode.Error + rightNode.Error
-		errorDict[(feature, category)] = totalError
+					rightSamples.AddSample(sample)
+	    calculate mean of both samples sets
 
-(feature, category) bestFunction = errorDict.ArgMin()
+calculate MSE of sample sets
+
+if current_MSE < best_MSE:
+    accept this split as new best and keep searching
+return at the end
 					```
