@@ -20,7 +20,7 @@ Key parameters:
 
 Greedy optimization. 
 
-Each node considers all the samples in the dataset provided to it, and considers each possible feature to use to split the samples into child nodes.
+Each node considers all the samples in the dataset provided to it, and considers each possible feature to use to split the samples off into child nodes. The error is calculated for both nodes resulting from the split (RSS of mean value of all samples in node). The split with the lowest Error is considered. If the current node depth == max_depth, or current node samples < min_samples_split, or either child node has num samples in leaf < min_samples_leaf, the split is rejected, and the node returns the mean value of all samples in node. If the split is accepted, each child node will follow the above steps with the samples provided to it to consider another split.
 
 Might look something like this for regression in each node:
 
